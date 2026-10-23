@@ -1,0 +1,168 @@
+---
+const conversaciones = [
+  {
+    pregunta: 'Me mudo en marzo, ¿qué contrato primero?',
+    intro: 'Para una mudanza en marzo, esto es lo que suelen contratar primero:',
+    opciones: [
+      { texto: 'Mudanza y flete', patrocinado: true },
+      { texto: 'Cajas y embalaje', patrocinado: false },
+      { texto: 'Muebles', patrocinado: false },
+    ],
+  },
+  {
+    pregunta: 'Quiero renovar mi depto sin gastar una fortuna',
+    intro: 'Para renovar con presupuesto acotado, estos frentes dan resultado:',
+    opciones: [
+      { texto: 'Pintura', patrocinado: true },
+      { texto: 'Iluminación', patrocinado: false },
+      { texto: 'Muebles', patrocinado: false },
+    ],
+  },
+  {
+    pregunta: 'Tengo un taller mecánico en Ñuñoa, ¿cómo consigo más clientes?',
+    intro: 'Para llenar un taller en Ñuñoa, estos canales funcionan:',
+    opciones: [
+      { texto: 'Ficha de Google', patrocinado: false },
+      { texto: 'Redes sociales', patrocinado: false },
+      { texto: 'ChatGPT Ads', patrocinado: true },
+    ],
+  },
+];
+---
+
+<section class="section momentos">
+  <div class="container">
+    <div class="section-head">
+      <h2>
+        ChatGPT no espera que te busquen. Entiende lo que estás viviendo.
+      </h2>
+      <p>
+        Tres conversaciones como las que ocurren todos los días, y la empresa
+        que aparece en cada una.
+      </p>
+    </div>
+
+    <div class="chat-grid">
+      {
+        conversaciones.map((c) => (
+          <article class="chat-card card">
+            <div class="chat-top">
+              <span class="chat-dot" aria-hidden="true" />
+              ChatGPT
+            </div>
+            <p class="bubble-user">{c.pregunta}</p>
+            <div class="bubble-ai">
+              <p>{c.intro}</p>
+              <ul>
+                {c.opciones.map((o) => (
+                  <li class:list={['opcion', { pauta: o.patrocinado }]}>
+                    <span class="opcion-texto">{o.texto}</span>
+                    {o.patrocinado && <span class="chip">Patrocinado</span>}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="cierre">Nuestro trabajo es que en esa lista aparezcas tú.</p>
+  </div>
+</section>
+
+<style>
+  .chat-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .chat-card {
+    display: grid;
+    gap: var(--space-3);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+  }
+
+  .chat-top {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-muted-foreground);
+  }
+
+  .chat-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-primary);
+  }
+
+  .bubble-user {
+    justify-self: end;
+    max-width: 85%;
+    background: var(--color-foreground);
+    color: #f8fafc;
+    padding: 10px 16px;
+    border-radius: 16px 16px 4px 16px;
+  }
+
+  .bubble-ai {
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 4px 16px 16px 16px;
+    padding: var(--space-3);
+    font-size: 0.9375rem;
+  }
+
+  .bubble-ai ul {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-2);
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .opcion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 8px 12px;
+  }
+
+  .opcion.pauta {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .chip {
+    flex-shrink: 0;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+    border-radius: 999px;
+    padding: 2px 8px;
+  }
+
+  .cierre {
+    margin-top: var(--space-6);
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  @media (min-width: 768px) {
+    .chat-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

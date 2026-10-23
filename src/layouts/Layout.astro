@@ -1,0 +1,267 @@
+---
+import '../styles/global.css';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import { SITE, WHATSAPP_URL } from '../config';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${SITE.name} — Tu empresa aparece en ChatGPT | ChatGPT Ads en Chile`,
+  description =
+    'Tu empresa aparece en ChatGPT justo cuando tu cliente va a comprar. Instalamos, medimos y operamos ChatGPT Ads en Chile. Piloto de 6 semanas.',
+} = Astro.props;
+
+const canonical = `https://${SITE.domain}/`;
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="es-CL">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#f8fafc" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="es_CL" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="wordmark" href="/">aparece<span class="dot">.</span></a>
+        <a
+          class="btn btn-primary header-cta"
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener"
+        >
+          <svg
+            class="wa-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"
+            ></path>
+          </svg>
+          WhatsApp
+        </a>
+      </div>
+    </header>
+
+    <main id="contenido">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <p class="wordmark">aparece<span class="dot">.</span></p>
+          <p class="footer-tag">ChatGPT Ads, operados desde Chile.</p>
+          <p class="footer-legal">
+            {SITE.legalName} · RUT {SITE.rut}<br />
+            Operador independiente, no afiliado a OpenAI.
+          </p>
+        </div>
+        <nav aria-label="Servicios">
+          <h3>Servicios</h3>
+          <ul>
+            <li>Instalación y medición</li>
+            <li>Operación semanal</li>
+            <li>Reporte los viernes</li>
+            <li>Piloto de 6 semanas con meta</li>
+          </ul>
+        </nav>
+        <nav aria-label="Enlaces">
+          <h3>Enlaces</h3>
+          <ul>
+            <li><a href="#piloto">El piloto</a></li>
+            <li><a href="#faq">Preguntas frecuentes</a></li>
+            <li>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener"
+                >Escríbenos por WhatsApp</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="container footer-bottom">
+        <p>© {year} {SITE.legalName}. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <WhatsAppFloat />
+
+    <!-- ============================================================
+      MEDICIÓN — Measurement Pixel de OpenAI Ads (INACTIVO).
+      1) Crear la cuenta en ads.openai.com → Ads Manager → Events →
+         copiar el snippet del pixel y pegarlo aquí, antes de </body>.
+      2) Evento lead_created: se dispara en el clic de cualquier enlace
+         wa.me. Para publicarlo, poner pixelOn: true en src/config.ts;
+         el listener inline de abajo solo se emite cuando pixelOn es true.
+      3) Conversions API (server-side): cuando exista formulario con
+         backend, enviar lead_created con el mismo event_id para deduplicar.
+    ============================================================= -->
+    {
+      SITE.pixelOn ? (
+        <script is:inline>
+          // lead_created en cada clic de WhatsApp (activo con pixelOn: true)
+          document
+            .querySelectorAll('a[href*="wa.me"]')
+            .forEach(function (a) {
+              a.addEventListener('click', function () {
+                /* oca('track', 'lead_created'); */
+              });
+            });
+        </script>
+      ) : null
+    }
+  </body>
+</html>
+
+<style>
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+    background: var(--color-card);
+    color: var(--color-foreground);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius);
+  }
+
+  .skip-link:focus {
+    left: var(--space-2);
+    top: var(--space-2);
+  }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(248, 250, 252, 0.85);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding-block: var(--space-3);
+  }
+
+  .wordmark {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-foreground);
+    text-decoration: none;
+  }
+
+  a.wordmark:hover {
+    color: var(--color-accent);
+  }
+
+  .dot {
+    color: var(--color-accent);
+  }
+
+  .header-cta {
+    padding: 10px 18px;
+    font-size: 0.95rem;
+  }
+
+  .wa-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .site-footer {
+    background: var(--color-card);
+    border-top: 1px solid var(--color-border);
+    padding-block: var(--space-6) var(--space-4);
+    margin-top: var(--space-7);
+  }
+
+  .footer-grid {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .footer-tag {
+    margin-top: var(--space-2);
+    color: var(--color-muted-foreground);
+  }
+
+  .footer-legal {
+    margin-top: var(--space-3);
+    font-size: 0.875rem;
+    color: var(--color-muted-foreground);
+  }
+
+  .site-footer h3 {
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-muted-foreground);
+    margin-bottom: var(--space-2);
+  }
+
+  .site-footer ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-1);
+  }
+
+  .site-footer a {
+    text-decoration: none;
+  }
+
+  .site-footer a:hover {
+    text-decoration: underline;
+  }
+
+  .footer-bottom {
+    margin-top: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+    font-size: 0.875rem;
+    color: var(--color-muted-foreground);
+  }
+
+  @media (min-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1.4fr 1fr 1fr;
+    }
+  }
+</style>

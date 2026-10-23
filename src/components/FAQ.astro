@@ -1,0 +1,117 @@
+---
+import { WHATSAPP_URL } from '../config';
+
+const faqs = [
+  {
+    q: '¿Quién ve los anuncios?',
+    a: 'Aparecen para quienes usan ChatGPT Free y Go, que son la mayoría de las personas que usan ChatGPT en Chile. El anuncio sale etiquetado como patrocinado, debajo de la respuesta.',
+  },
+  {
+    q: '¿Esto afecta las respuestas de ChatGPT?',
+    a: 'El sistema de anuncios corre separado del modelo y todo anuncio sale etiquetado como patrocinado. No operamos tácticas que contaminen las respuestas; el trabajo es aparecer en el momento correcto.',
+  },
+  {
+    q: '¿En cuánto tiempo veo resultados?',
+    a: 'La primera señal real de rendimiento aparece entre la semana 3 y la 5 del piloto. Quien te promete resultados en 48 horas te está vendiendo apuro.',
+  },
+  {
+    q: '¿Sirve para mi rubro?',
+    a: 'Mejor resultado en compras pensadas: ecommerce, servicios, viajes y B2B. Salud, finanzas y juego están restringidos por las políticas de OpenAI. Escríbenos por WhatsApp y te decimos si tu rubro aplica.',
+  },
+  {
+    q: '¿Por qué 90 días mínimo?',
+    a: 'Las cohortes semanales necesitan semanas para madurar, y parte de las conversiones se registra entre 24 y 48 horas después del clic. Cortar antes es decidir con datos incompletos.',
+  },
+];
+---
+
+<section class="section faq" id="faq">
+  <div class="container">
+    <div class="section-head">
+      <h2>Preguntas frecuentes</h2>
+    </div>
+
+    <div class="acordeon">
+      {
+        faqs.map((f) => (
+          <details class="card" name="faq">
+            <summary>
+              {f.q}
+              <svg
+                class="chev"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </summary>
+            <p>{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+
+    <p class="otra">
+      ¿Tienes otra pregunta?
+      <a href={WHATSAPP_URL} target="_blank" rel="noopener"
+        >Escríbenos por WhatsApp</a
+      >.
+    </p>
+  </div>
+</section>
+
+<style>
+  .acordeon {
+    display: grid;
+    gap: var(--space-3);
+    max-width: 720px;
+  }
+
+  details {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .chev {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    color: var(--color-muted-foreground);
+    transition: transform 200ms ease;
+  }
+
+  details[open] .chev {
+    transform: rotate(180deg);
+  }
+
+  details p {
+    padding: 0 var(--space-4) var(--space-4);
+    color: var(--color-muted-foreground);
+  }
+
+  .otra {
+    margin-top: var(--space-5);
+    color: var(--color-muted-foreground);
+  }
+</style>

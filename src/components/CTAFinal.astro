@@ -1,0 +1,52 @@
+---
+import { WHATSAPP_URL } from '../config';
+---
+
+<section class="section ctafinal">
+  <div class="container">
+    <div class="panel">
+      <h2>Si tu cliente le pregunta su próxima compra a ChatGPT, tu empresa puede aparecer justo ahí.</h2>
+      <a
+        class="btn btn-primary"
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener">Pedir mi auditoría gratuita</a
+      >
+      <p class="micro">
+        5 preguntas reales a ChatGPT sobre tu rubro, con captura. Gratis.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .panel {
+    background: var(--color-foreground);
+    color: #f8fafc;
+    border-radius: var(--radius-lg);
+    padding: var(--space-6) var(--space-4);
+    text-align: center;
+    display: grid;
+    justify-items: center;
+    gap: var(--space-4);
+  }
+
+  .panel h2 {
+    max-width: 26ch;
+  }
+
+  .panel .btn-primary {
+    justify-self: center;
+  }
+
+  .micro {
+    font-size: 0.875rem;
+    color: #cbd5e1;
+  }
+
+  @media (min-width: 768px) {
+    .panel {
+      padding: var(--space-7) var(--space-6);
+    }
+  }
+</style>

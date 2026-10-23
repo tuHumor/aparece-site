@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- aparece. — a minúscula + punto naranja -->
+  <rect width="64" height="64" rx="14" fill="#f8fafc"/>
+  <circle cx="27" cy="37" r="11" fill="none" stroke="#1e293b" stroke-width="8"/>
+  <path d="M43 25v24" stroke="#1e293b" stroke-width="8" stroke-linecap="round" fill="none"/>
+  <circle cx="54" cy="49" r="5" fill="#c2410c"/>
+</svg>

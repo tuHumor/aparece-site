@@ -1,0 +1,138 @@
+---
+import { PRECIOS, WHATSAPP_URL } from '../config';
+
+const incluye = [
+  `Pauta desde ${PRECIOS.pautaDesde}, pagada directo a OpenAI por tu empresa.`,
+  `Al terminar: retainer desde ${PRECIOS.retainerDesde} más un porcentaje del gasto por tramos.`,
+];
+---
+
+<section class="section piloto" id="piloto">
+  <div class="container">
+    <div class="section-head">
+      <h2>El piloto: {PRECIOS.pilotoSemanas} semanas con meta</h2>
+      <p>
+        Un ciclo completo de instalación, operación y medición, con una meta de
+        costo por venta acordada antes de partir.
+      </p>
+    </div>
+
+    <div class="precio-card card">
+      <p class="precio-label">
+        Piloto de {PRECIOS.pilotoSemanas} semanas
+      </p>
+      <p class="precio">{PRECIOS.piloto}</p>
+      <ul class="incluye">
+        {
+          incluye.map((linea) => (
+            <li>
+              <span class="check" aria-hidden="true">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+              </span>
+              {linea}
+            </li>
+          ))
+        }
+      </ul>
+      <div class="fundador">
+        <p>
+          <strong>Precio fundador:</strong> {PRECIOS.fundador} de descuento en
+          el piloto, {PRECIOS.cuposFundador} cupos. A cambio publicamos el caso
+          de estudio con cifras reales. Descuento real, no humo.
+        </p>
+        <a
+          class="btn btn-primary"
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener">Postular al precio fundador</a
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .piloto {
+    background: var(--color-card);
+    border-block: 1px solid var(--color-border);
+  }
+
+  .precio-card {
+    max-width: 560px;
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+  }
+
+  .precio-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-muted-foreground);
+  }
+
+  .precio {
+    font-size: clamp(2.25rem, 1.6rem + 2.8vw, 3.25rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .incluye {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-4);
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .incluye li {
+    display: flex;
+    gap: var(--space-2);
+    align-items: flex-start;
+  }
+
+  .check {
+    flex-shrink: 0;
+    margin-top: 5px;
+    color: var(--color-primary);
+  }
+
+  .check svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .fundador {
+    margin-top: var(--space-5);
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    display: grid;
+    gap: var(--space-3);
+    justify-items: start;
+  }
+
+  .fundador .btn-primary {
+    background: var(--color-on-accent);
+    color: var(--color-accent);
+  }
+
+  .fundador .btn-primary:hover {
+    background: #fff1e7;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+</style>

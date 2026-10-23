@@ -1,0 +1,143 @@
+---
+import { Image } from 'astro:assets';
+import heroChatgpt from '../assets/hero-chatgpt.png';
+import { WHATSAPP_URL } from '../config';
+---
+
+<section class="hero">
+  <div class="container hero-grid">
+    <p class="kicker fade-up">ChatGPT Ads · disponibles en Chile</p>
+
+    <h1 class="hero-title fade-up" style="animation-delay: 60ms">
+      Tu cliente le cuenta su vida a ChatGPT. Aparece justo cuando va a
+      comprar.
+    </h1>
+
+    <figure class="hero-figure fade-up" style="animation-delay: 120ms">
+      <Image
+        src={heroChatgpt}
+        alt="Captura de ChatGPT: una persona pregunta qué materiales necesita para construir una valla y, debajo de la respuesta, aparece un anuncio patrocinado de una tienda de materiales."
+        format="webp"
+        widths={[420, 840]}
+        sizes="(min-width: 768px) 420px, 100vw"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <figcaption>Así se ve un anuncio dentro de ChatGPT.</figcaption>
+    </figure>
+
+    <p class="hero-sub fade-up" style="animation-delay: 180ms">
+      Alguien que se muda, que renueva su departamento o que abre su negocio le
+      cuenta sus planes a ChatGPT. Este entiende el momento y recomienda
+      opciones, y tu empresa puede aparecer justo en ese momento. Nosotros lo
+      instalamos, lo medimos y lo operamos por ti, con la experiencia de quien
+      ya corre el canal en Chile.
+    </p>
+
+    <div class="hero-ctas fade-up" style="animation-delay: 240ms">
+      <div class="cta-row">
+        <a
+          class="btn btn-primary"
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener">Pedir auditoría gratis</a
+        >
+        <a class="btn btn-secondary" href="#piloto">Ver el piloto</a>
+      </div>
+      <p class="hero-note">Te respondemos el mismo día hábil.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-7);
+  }
+
+  .hero-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 1.3rem + 3.2vw, 3.25rem);
+    letter-spacing: -0.02em;
+  }
+
+  .hero-figure {
+    margin: 0;
+  }
+
+  .hero-figure :global(img) {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .hero-figure figcaption {
+    margin-top: var(--space-2);
+    font-size: 0.875rem;
+    color: var(--color-muted-foreground);
+  }
+
+  .hero-sub {
+    font-size: 1.125rem;
+    color: var(--color-muted-foreground);
+    max-width: 56ch;
+  }
+
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .hero-note {
+    margin-top: var(--space-2);
+    font-size: 0.875rem;
+    color: var(--color-muted-foreground);
+  }
+
+  @media (min-width: 768px) {
+    .hero {
+      padding-block: var(--space-8);
+    }
+
+    .hero-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-areas:
+        'kicker figure'
+        'h1 figure'
+        'sub figure'
+        'ctas figure';
+      column-gap: var(--space-7);
+      row-gap: var(--space-4);
+      align-items: center;
+    }
+
+    .kicker {
+      grid-area: kicker;
+      justify-self: start;
+    }
+
+    .hero-title {
+      grid-area: h1;
+    }
+
+    .hero-sub {
+      grid-area: sub;
+    }
+
+    .hero-ctas {
+      grid-area: ctas;
+    }
+
+    .hero-figure {
+      grid-area: figure;
+      max-width: 420px;
+      justify-self: end;
+    }
+  }
+</style>

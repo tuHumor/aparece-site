@@ -1,0 +1,41 @@
+/* Aparece — tokens de diseño.
+   Fuente de verdad: design-system/aparece/MASTER.md
+   (CTA #C2410C + blanco; #EA580C no alcanza 4.5:1 con texto blanco). */
+
+:root {
+  /* Color */
+  --color-primary: #2563eb;
+  --color-text-accent: #1d4ed8;
+  --color-accent: #c2410c;
+  --color-accent-hover: #9a3412;
+  --color-on-accent: #ffffff;
+  --color-background: #f8fafc;
+  --color-foreground: #1e293b;
+  --color-card: #ffffff;
+  --color-card-foreground: #1e293b;
+  --color-muted: #e9eff8;
+  --color-muted-foreground: #475569;
+  --color-border: #e2e8f0;
+
+  /* Espaciado */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+  --space-8: 96px;
+
+  /* Forma y profundidad */
+  --radius: 12px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 6px 16px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 20px 40px rgba(15, 23, 42, 0.14);
+
+  /* Tipografía */
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto,
+    sans-serif;
+  --container: 1040px;
+}
