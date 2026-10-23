@@ -30,14 +30,19 @@ botón flotante. El listener de `lead_created` solo se publica cuando
 
 ## Deploy en Cloudflare Pages
 
-1. Sube este repo a GitHub (ver abajo).
-2. En Cloudflare → **Workers & Pages → Create → Pages → Connect to Git**,
-   elige el repo.
-3. Preset de framework: **Astro**. Si pide valores manuales:
-   - Build command: `npm run build`
-   - Build output directory: `dist`
-   - Root del proyecto: la raíz del repo (`/`).
-4. Deploy. Queda en `https://<proyecto>.pages.dev`.
+El proyecto ya existe: **aparece-site** → `https://aparece-site.pages.dev`
+(direct upload, producción = branch `main`).
+
+Para publicar un cambio:
+
+```bash
+npm run build
+npx wrangler pages deploy dist --project-name aparece-site --branch main
+```
+
+Requiere `wrangler login` (OAuth de Cloudflare en `~/.config/.wrangler`).
+Nunca correr `astro add cloudflare`: el sitio es estático puro y no lleva
+adaptador.
 
 ### Dominio propio
 
