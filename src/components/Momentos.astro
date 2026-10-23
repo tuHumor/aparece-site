@@ -1,31 +1,22 @@
 ---
-const conversaciones = [
+const momentos = [
   {
-    pregunta: 'Me mudo en marzo, ¿qué contrato primero?',
-    intro: 'Para una mudanza en marzo, esto es lo que suelen contratar primero:',
-    opciones: [
-      { texto: 'Mudanza y flete', patrocinado: true },
-      { texto: 'Cajas y embalaje', patrocinado: false },
-      { texto: 'Muebles', patrocinado: false },
-    ],
+    icono: 'truck',
+    cita: 'Me mudo en marzo, ¿qué contrato primero?',
+    momento: 'Mudanza',
+    activa: ['Mudanza y flete', 'Cajas y embalaje', 'Muebles'],
   },
   {
-    pregunta: 'Quiero renovar mi depto sin gastar una fortuna',
-    intro: 'Para renovar con presupuesto acotado, estos frentes dan resultado:',
-    opciones: [
-      { texto: 'Pintura', patrocinado: true },
-      { texto: 'Iluminación', patrocinado: false },
-      { texto: 'Muebles', patrocinado: false },
-    ],
+    icono: 'brush',
+    cita: 'Quiero renovar mi depto sin gastar una fortuna',
+    momento: 'Renovación',
+    activa: ['Pintura', 'Iluminación', 'Muebles'],
   },
   {
-    pregunta: 'Tengo un taller mecánico en Ñuñoa, ¿cómo consigo más clientes?',
-    intro: 'Para llenar un taller en Ñuñoa, estos canales funcionan:',
-    opciones: [
-      { texto: 'Ficha de Google', patrocinado: false },
-      { texto: 'Redes sociales', patrocinado: false },
-      { texto: 'ChatGPT Ads', patrocinado: true },
-    ],
+    icono: 'wrench',
+    cita: 'Tengo un taller mecánico en Ñuñoa, ¿cómo consigo más clientes?',
+    momento: 'Pyme que busca clientes',
+    activa: ['Publicidad digital', 'Ficha de Google', 'Redes sociales'],
   },
 ];
 ---
@@ -37,120 +28,145 @@ const conversaciones = [
         ChatGPT no espera que te busquen. Entiende lo que estás viviendo.
       </h2>
       <p>
-        Tres conversaciones como las que ocurren todos los días, y la empresa
-        que aparece en cada una.
+        Tres momentos de vida, tres preguntas que la gente ya le hace hoy a
+        ChatGPT. La respuesta llega con opciones para comprar, y ahí entra tu
+        empresa.
       </p>
     </div>
 
-    <div class="chat-grid">
+    <div class="momento-grid">
       {
-        conversaciones.map((c) => (
-          <article class="chat-card card">
-            <div class="chat-top">
-              <span class="chat-dot" aria-hidden="true" />
-              ChatGPT
-            </div>
-            <p class="bubble-user">{c.pregunta}</p>
-            <div class="bubble-ai">
-              <p>{c.intro}</p>
-              <ul>
-                {c.opciones.map((o) => (
-                  <li class:list={['opcion', { pauta: o.patrocinado }]}>
-                    <span class="opcion-texto">{o.texto}</span>
-                    {o.patrocinado && <span class="chip">Patrocinado</span>}
-                  </li>
-                ))}
-              </ul>
-            </div>
+        momentos.map((m) => (
+          <article class="card item">
+            <span class="icono" aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                {m.icono === 'truck' && (
+                  <>
+                    <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
+                    <path d="M15 18H9" />
+                    <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14" />
+                    <circle cx="17" cy="18" r="2" />
+                    <circle cx="7" cy="18" r="2" />
+                  </>
+                )}
+                {m.icono === 'brush' && (
+                  <>
+                    <path d="m9.06 11.9 8.07-8.06a2.85 2.85 0 1 1 4.03 4.03l-8.06 8.08" />
+                    <path d="M7.07 14.94c-1.66 0-3 1.35-3 3.02 0 1.33-2.5 1.52-2 2.02 1.08 1.1 2.49 2.02 4 2.02 2.2 0 4-1.8 4-4.04a3.01 3.01 0 0 0-3-3.02z" />
+                  </>
+                )}
+                {m.icono === 'wrench' && (
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+                )}
+              </svg>
+            </span>
+
+            <blockquote class="cita">{m.cita}</blockquote>
+
+            <dl class="detalle">
+              <div>
+                <dt>Momento</dt>
+                <dd>{m.momento}</dd>
+              </div>
+              <div>
+                <dt>Compras que se activan</dt>
+                <dd class="tags">
+                  {m.activa.map((a) => <span class="tag">{a}</span>)}
+                </dd>
+              </div>
+            </dl>
           </article>
         ))
       }
     </div>
+
+    <p class="nota">
+      El formato real está en la captura del inicio: el anuncio aparece debajo
+      de la respuesta, etiquetado como patrocinado. Cómo se ve caso a caso lo
+      estamos documentando en público.
+    </p>
 
     <p class="cierre">Nuestro trabajo es que en esa lista aparezcas tú.</p>
   </div>
 </section>
 
 <style>
-  .chat-grid {
+  .momento-grid {
     display: grid;
     gap: var(--space-4);
   }
 
-  .chat-card {
-    display: grid;
-    gap: var(--space-3);
-    border-radius: var(--radius-lg);
-    padding: var(--space-4);
+  .icono {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius);
+    background: var(--color-muted);
+    color: var(--color-primary);
   }
 
-  .chat-top {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    font-size: 0.8125rem;
+  .icono svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .cita {
+    margin-top: var(--space-3);
+    font-size: 1.125rem;
     font-weight: 600;
+    line-height: 1.4;
+    border-left: 3px solid var(--color-accent);
+    padding-left: var(--space-3);
+  }
+
+  .detalle {
+    margin-top: var(--space-4);
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .detalle dt {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
     color: var(--color-muted-foreground);
   }
 
-  .chat-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--color-primary);
+  .detalle dd {
+    margin: var(--space-1) 0 0;
   }
 
-  .bubble-user {
-    justify-self: end;
-    max-width: 85%;
-    background: var(--color-foreground);
-    color: #f8fafc;
-    padding: 10px 16px;
-    border-radius: 16px 16px 4px 16px;
-  }
-
-  .bubble-ai {
-    background: var(--color-background);
-    border: 1px solid var(--color-border);
-    border-radius: 4px 16px 16px 16px;
-    padding: var(--space-3);
-    font-size: 0.9375rem;
-  }
-
-  .bubble-ai ul {
-    list-style: none;
-    padding: 0;
-    margin-top: var(--space-2);
-    display: grid;
-    gap: var(--space-2);
-  }
-
-  .opcion {
+  .tags {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-wrap: wrap;
     gap: var(--space-2);
-    background: var(--color-card);
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    padding: 8px 12px;
   }
 
-  .opcion.pauta {
-    border-color: var(--color-accent);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .chip {
-    flex-shrink: 0;
-    font-size: 0.6875rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-accent);
-    border: 1px solid var(--color-accent);
+  .tag {
+    display: inline-block;
+    background: var(--color-muted);
     border-radius: 999px;
-    padding: 2px 8px;
+    padding: 4px 12px;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .nota {
+    margin-top: var(--space-5);
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+    max-width: 640px;
   }
 
   .cierre {
@@ -161,7 +177,7 @@ const conversaciones = [
   }
 
   @media (min-width: 768px) {
-    .chat-grid {
+    .momento-grid {
       grid-template-columns: repeat(3, 1fr);
     }
   }
