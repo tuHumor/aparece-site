@@ -30,19 +30,17 @@ botón flotante. El listener de `lead_created` solo se publica cuando
 
 ## Deploy en Cloudflare Pages
 
-El proyecto ya existe: **aparece-site** → `https://aparece-site.pages.dev`
-(direct upload, producción = branch `main`).
+El proyecto **aparece-site** está conectado al repo de GitHub: cada push a
+`main` se construye y publica solo en `https://aparece-site.pages.dev`
+(presets: build `npm run build`, output `dist`). Los branches distintos de
+`main` generan previews en `*.aparece-site.pages.dev`.
 
-Para publicar un cambio:
-
-```bash
-npm run build
-npx wrangler pages deploy dist --project-name aparece-site --branch main
-```
-
-Requiere `wrangler login` (OAuth de Cloudflare en `~/.config/.wrangler`).
-Nunca correr `astro add cloudflare`: el sitio es estático puro y no lleva
-adaptador.
+- `.nvmrc` fija Node 22: Astro 7 exige ≥22.23.4 y la imagen de build de
+  Cloudflare trae una versión más vieja por defecto.
+- Nunca agregar `@astrojs/cloudflare`: el sitio es estático puro y no lleva
+  adaptador.
+- Fallback manual (si algún día hay que publicar sin push):
+  `npm run build && npx wrangler pages deploy dist --project-name aparece-site`
 
 ### Dominio propio
 
